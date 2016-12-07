@@ -40,8 +40,13 @@ public class CriarTabelaServlet extends HttpServlet {
                 
                 Connection con = filmesDB.getConnection();
                 Statement stmt = con.createStatement();
+                stmt.execute("DROP TABLE Filme");
                 stmt.execute("CREATE TABLE Filme (id INTEGER PRIMARY KEY,"
-                        + "titulo VARCHAR(64))");
+                        + "titulo VARCHAR(64),"
+                        + "diretor VARCHAR(64),"
+                        + "imdb CHAR(9),"
+                        + "duracao INTEGER,"
+                        + "ano INTEGER)");
                 con.close();
                 
                 try (PrintWriter out = response.getWriter()) {

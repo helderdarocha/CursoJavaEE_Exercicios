@@ -37,8 +37,10 @@ public class PovoarTabelaServlet extends HttpServlet {
             
             Connection con = filmesDB.getConnection();
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("INSERT INTO Filme(id, titulo) VALUES(1,'A Chegada')");
-            stmt.executeUpdate("INSERT INTO Filme(id, titulo) VALUES(2,'Rogue One')");
+            stmt.executeUpdate("INSERT INTO Filme(id, titulo, diretor, imdb, duracao, ano) "
+                    + "VALUES(1,'A Chegada', 'Não sei', 'tt2543164', 120, 2016)");
+            stmt.executeUpdate("INSERT INTO Filme(id, titulo, diretor, imdb, duracao, ano) "
+                    + "VALUES(2,'Rogue One', 'Não sei', 'tt3748528', 120, 2016)");
             con.close();
             
             try (PrintWriter out = response.getWriter()) {

@@ -50,7 +50,11 @@ public class FilmesServletJdbc extends HttpServlet {
                 while(rs.next()) {
                     out.println("<tr>");
                     out.println("<td>"+ rs.getInt("id") +"</td>");
+                    out.println("<td>"+ rs.getString("imdb") +"</td>");
                     out.println("<td>"+ rs.getString("titulo") +"</td>");
+                    out.println("<td>"+ rs.getString("diretor") +"</td>");
+                    out.println("<td>"+ rs.getInt("ano") +"</td>");
+                    out.println("<td>"+ rs.getInt("duracao") +"</td>");
                     out.println("</tr>");
                 }
                 out.println("</table>");
