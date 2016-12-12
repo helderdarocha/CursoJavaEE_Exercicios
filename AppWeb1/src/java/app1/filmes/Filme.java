@@ -2,6 +2,7 @@
 package app1.filmes;
 
 public class Filme {
+    private int id;
     private String titulo;
     private String diretor;
     private String imdb;
@@ -46,6 +47,14 @@ public class Filme {
 
     public void setAno(int ano) {
         this.ano = ano;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     

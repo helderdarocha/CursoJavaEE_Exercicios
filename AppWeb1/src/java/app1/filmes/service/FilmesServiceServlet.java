@@ -19,7 +19,7 @@ import javax.sql.DataSource;
  *
  * @author helderdarocha
  */
-@WebServlet(name = "FilmesServiceServlet", urlPatterns = {"/FilmesService/*"})
+@WebServlet("/FilmesService/*")
 public class FilmesServiceServlet extends HttpServlet {
     @Resource(name = "filmes")
     private DataSource filmes;
