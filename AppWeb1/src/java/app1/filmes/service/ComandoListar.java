@@ -28,35 +28,15 @@ class ComandoListar implements Comando {
     private DataSource ds;
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         FilmesDAO dao = new FilmesDAOImpl(ds);
         try {
             List<Filme> filmes = dao.getFilmes();
+            
+            request.setAttribute("filmes", filmes);
 
-            try (PrintWriter out = response.getWriter()) {
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>");
-                out.println("<title>Lista de Filmes</title>");
-                out.println("</head>");
-                out.println("<body>");
-                out.println("<h1>Lista de Filmes</h1>");
-
-                out.println("<table border>");
-                for (Filme f : filmes) {
-                    out.println("<tr>");
-                    out.println("<td>" + f.getImdb() + "</td>");
-                    out.println("<td>" + f.getTitulo() + "</td>");
-                    out.println("<td>" + f.getDiretor() + "</td>");
-                    out.println("<td>" + f.getAno() + "</td>");
-                    out.println("<td>" + f.getDuracao() + "</td>");
-                    out.println("</tr>");
-                }
-                out.println("</table>");
-
-                out.println("</body>");
-                out.println("</html>");
-            }
+            //return "/FilmesService/view/listar";
+            return "/faces/listaDeFilmes.xhtml";
 
         } catch (SQLException ex) {
             throw new ServletException(ex);

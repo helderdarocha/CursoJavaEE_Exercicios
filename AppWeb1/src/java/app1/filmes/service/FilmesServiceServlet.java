@@ -8,6 +8,7 @@ package app1.filmes.service;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.annotation.Resource;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,14 +22,26 @@ import javax.sql.DataSource;
  */
 @WebServlet("/FilmesService/*")
 public class FilmesServiceServlet extends HttpServlet {
+
     @Resource(name = "filmes")
     private DataSource filmes;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nome = request.getPathInfo();
-        Comando comando = new ComandoRepository().getComando(nome);
-        comando.setDataSource(filmes);
-        comando.execute(request, response);
+        ComandoRepository controller = new ComandoRepository();
+
+        if (nome.startsWith("/view")) {
+            View view = controller.getView(nome);
+            view.render(request, response);
+        } else {
+
+            Comando comando = controller.getComando(nome);
+            comando.setDataSource(filmes);
+            String proximaPagina = comando.execute(request, response);
+
+            RequestDispatcher disp = request.getRequestDispatcher(proximaPagina);
+            disp.forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

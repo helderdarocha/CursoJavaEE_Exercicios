@@ -27,7 +27,7 @@ class ComandoCriar implements Comando {
     private DataSource ds;
     
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
         String imdb = request.getParameter("imdb");
         String titulo = request.getParameter("titulo");
@@ -59,8 +59,8 @@ class ComandoCriar implements Comando {
            throw new ServletException(ex);
         }
         
-        RequestDispatcher disp = request.getRequestDispatcher("/FilmesService/listar");
-        disp.forward(request, response);
+        return "/FilmesService/listar";
+
     }
     
     @Override

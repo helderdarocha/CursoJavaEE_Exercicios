@@ -14,13 +14,20 @@ import java.util.Map;
  */
 public class ComandoRepository {
     private Map<String, Comando> comandos = new HashMap<>();
+    private Map<String, View>    views    = new HashMap<>();
     
     public ComandoRepository() {
-        comandos.put("criar", new ComandoCriar());
-        comandos.put("listar", new ComandoListar());
+        comandos.put("/criar", new ComandoCriar());
+        comandos.put("/listar", new ComandoListar());
+        
+        views.put("/view/listar", new ViewListar());
     }
     
     public Comando getComando(String nome) {
         return comandos.get(nome);
+    }
+    
+    public View getView(String nome) {
+        return views.get(nome);
     }
 }
