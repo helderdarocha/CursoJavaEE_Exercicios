@@ -1,5 +1,6 @@
 package cinemateca;
 
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -64,6 +65,29 @@ public class Filme {
     public void setId(int id) {
         this.id = id;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 23 * hash + Objects.hashCode(this.imdb);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Filme other = (Filme) obj;
+        if (!Objects.equals(this.imdb, other.imdb)) {
+            return false;
+        }
+        return true;
+    }
+    
     
     
 }

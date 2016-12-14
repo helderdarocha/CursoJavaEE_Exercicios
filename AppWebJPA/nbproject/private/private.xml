@@ -3,12 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/helderdarocha/Code/NetBeansProjects/Laboratory/AppWebJPA/src/java/cinemateca/web/LivroBean.java</file>
-            <file>file:/Users/helderdarocha/Code/NetBeansProjects/Laboratory/AppWebJPA/web/index.xhtml</file>
-            <file>file:/Users/helderdarocha/Code/NetBeansProjects/Laboratory/AppWebJPA/web/WEB-INF/faces-config.xml</file>
-            <file>file:/Users/helderdarocha/Code/NetBeansProjects/Laboratory/AppWebJPA/web/listaDeLivros.xhtml</file>
-            <file>file:/Users/helderdarocha/Code/NetBeansProjects/Laboratory/AppWebJPA/src/java/cinemateca/Livro.java</file>
-            <file>file:/Users/helderdarocha/Code/NetBeansProjects/Laboratory/AppWebJPA/src/java/cinemateca/Filme.java</file>
+            <file>file:/Users/helderdarocha/Code/NetBeansProjects/CursoJavaEE/CursoJavaEE_GPA/AppWebJPA/web/listaDeLivros.xhtml</file>
+            <file>file:/Users/helderdarocha/Code/NetBeansProjects/CursoJavaEE/CursoJavaEE_GPA/AppWebJPA/src/java/cinemateca/Filme.java</file>
+            <file>file:/Users/helderdarocha/Code/NetBeansProjects/CursoJavaEE/CursoJavaEE_GPA/AppWebJPA/web/index.xhtml</file>
         </group>
     </open-files>
 </project-private>
