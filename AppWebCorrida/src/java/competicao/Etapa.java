@@ -6,10 +6,17 @@
 package competicao;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -21,6 +28,63 @@ public class Etapa implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String nome;
+    @ManyToOne
+    private Corrida corrida;
+    @ManyToMany(mappedBy="etapas")
+    private List<Participante> participantes;
+    @Embedded
+    @AttributeOverrides({
+        @AttributeOverride(name="nome", 
+                           column=@Column(name="origem"))
+    })
+    private Localidade origem;
+    @Embedded
+    @AttributeOverrides({
+        @AttributeOverride(name="nome", 
+                           column=@Column(name="destino"))
+    })
+    private Localidade destino;
+
+    public Localidade getOrigem() {
+        return origem;
+    }
+
+    public void setOrigem(Localidade origem) {
+        this.origem = origem;
+    }
+
+    public Localidade getDestino() {
+        return destino;
+    }
+
+    public void setDestino(Localidade destino) {
+        this.destino = destino;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Corrida getCorrida() {
+        return corrida;
+    }
+
+    public void setCorrida(Corrida corrida) {
+        this.corrida = corrida;
+    }
+
+    public List<Participante> getParticipantes() {
+        return participantes;
+    }
+
+    public void setParticipantes(List<Participante> participantes) {
+        this.participantes = participantes;
+    }
 
     public Long getId() {
         return id;
