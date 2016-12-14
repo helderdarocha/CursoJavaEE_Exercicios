@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.ManyToMany;
 
 /**
@@ -25,8 +26,13 @@ public class Aluno implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nome;
-    @ManyToMany(mappedBy = "alunos")
+    @ManyToMany(mappedBy = "alunos", cascade=CascadeType.ALL)
     private List<Turma> turmas = new ArrayList<>();
+    
+    public void addTurma(Turma t) {
+        turmas.add(t);
+        t.addAluno(this);
+    }
 
     public List<Turma> getTurmas() {
         return turmas;

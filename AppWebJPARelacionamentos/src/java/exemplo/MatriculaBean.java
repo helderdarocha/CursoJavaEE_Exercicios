@@ -36,24 +36,22 @@ public class MatriculaBean {
         a1.setNome("Helder");
         t1.setCodigo("T123");
         
-        List<Turma> turmas = new ArrayList<>();
-        a1.setTurmas(turmas);
-        a1.getTurmas().add(t1);
-        t1.getAlunos().add(a1);
+        a1.addTurma(t1);
+        t1.addAluno(a1);
         
         List<Aluno> alunos = new ArrayList<>();
         t1.setAlunos(alunos);
         
-        persist(a1);
-        persist(t1);
+        merge(a1);
+        merge(t1);
         
         return "funcionou";
     }
 
-    public void persist(Object object) {
+    public void merge(Object object) {
         try {
             utx.begin();
-            em.persist(object);
+            em.merge(object);
             utx.commit();
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
