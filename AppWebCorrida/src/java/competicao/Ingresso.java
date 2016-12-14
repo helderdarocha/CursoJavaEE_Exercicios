@@ -7,9 +7,12 @@ package competicao;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -21,6 +24,35 @@ public class Ingresso implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private double valor;
+    @Enumerated(EnumType.STRING)
+    private StatusIngresso status;
+    @OneToOne
+    private Participante participante;
+
+    public double getValor() {
+        return valor;
+    }
+
+    public void setValor(double valor) {
+        this.valor = valor;
+    }
+
+    public StatusIngresso getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusIngresso status) {
+        this.status = status;
+    }
+
+    public Participante getParticipante() {
+        return participante;
+    }
+
+    public void setParticipante(Participante participante) {
+        this.participante = participante;
+    }
 
     public Long getId() {
         return id;

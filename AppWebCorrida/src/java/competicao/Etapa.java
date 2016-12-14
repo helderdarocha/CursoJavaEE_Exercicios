@@ -6,6 +6,7 @@
 package competicao;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -32,7 +33,7 @@ public class Etapa implements Serializable {
     @ManyToOne
     private Corrida corrida;
     @ManyToMany(mappedBy="etapas")
-    private List<Participante> participantes;
+    private List<Participante> participantes = new ArrayList<>();
     @Embedded
     @AttributeOverrides({
         @AttributeOverride(name="nome", 
@@ -45,6 +46,11 @@ public class Etapa implements Serializable {
                            column=@Column(name="destino"))
     })
     private Localidade destino;
+    
+    public void addParticipante(Participante p) {
+        participantes.add(p);
+        p.getEtapas().add(this);
+    }
 
     public Localidade getOrigem() {
         return origem;

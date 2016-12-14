@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -24,6 +25,7 @@ public class Corrida implements Serializable {
     private Long id;
     
     private String nome;
+    @OneToMany(mappedBy="corrida")
     private List<Etapa> etapas;
 
     public String getNome() {
