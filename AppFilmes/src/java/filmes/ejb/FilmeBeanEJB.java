@@ -5,7 +5,7 @@
  */
 package filmes.ejb;
 
-import cinemateca.Livro;
+import filmes.entity.Filme;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -13,18 +13,18 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 @Stateless
-public class LivroBeanEJB {
+public class FilmeBeanEJB {
     
-    @PersistenceContext(unitName="AppWebEJBPU")
+    @PersistenceContext(unitName="AppFilmesPU")
     EntityManager em;
     
-    public void criarLivro(Livro livro) {
-        em.persist(livro);
+    public void criar(Filme filme) {
+        em.persist(filme);
     }
     
-    public List<Livro> getLivros() {
-        TypedQuery<Livro> query = 
-                em.createQuery("select x from Livro x", Livro.class);
+    public List<Filme> getAll() {
+        TypedQuery<Filme> query = 
+                em.createQuery("select x from Filme x", Filme.class);
         return query.getResultList();
     }
 }

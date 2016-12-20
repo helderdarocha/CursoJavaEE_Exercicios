@@ -8,7 +8,7 @@
     <h:body>
         <h1>Lista de Filmes JSF</h1>
         
-        <h:dataTable value="#{????}" var="f">
+        <h:dataTable value="#{filmeBean.filmes}" var="f">
                 <h:column>#{f.imdb}</h:column>
                 <h:column>#{f.titulo}</h:column>
                 <h:column>#{f.diretor}</h:column>

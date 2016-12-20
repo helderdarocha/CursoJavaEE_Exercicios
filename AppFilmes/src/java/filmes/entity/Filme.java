@@ -1,4 +1,4 @@
-package cinemateca;
+package filmes.entity;
 
 import java.util.Objects;
 import javax.persistence.Entity;
