@@ -15,7 +15,7 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class LivroBeanEJB {
     
-    @PersistenceContext(unitName="AppWebJPAPU")
+    @PersistenceContext(unitName="AppWebEJBPU")
     EntityManager em;
     
     public void criarLivro(Livro livro) {
