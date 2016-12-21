@@ -20,25 +20,42 @@ public class FilmeBean {
     private String imdb;
     private int ano;
     private int duracao;
-    
+    private int filmeId;
+
     @EJB
     FilmeBeanEJB dao;
     
-    public String criarFilme() {
+    public String criarOuEditarFilme() {
         Filme filme = new Filme();
         filme.setTitulo(titulo);
         filme.setDiretor(diretor);
         filme.setImdb(imdb);
         filme.setAno(ano);
         filme.setDuracao(duracao);
+        filme.setId(filmeId);
         
-        dao.criar(filme);
+        dao.criarOuEditar(filme);
         
         return "/ListarFilmes";
     }
     
     public List<Filme> getFilmes() {
         return dao.getAll();
+    }
+    
+    public String remover(Filme f) {
+        dao.delete(f);
+        return "/ListarFilmes";
+    }
+    
+    public String editar(Filme f) {
+        this.titulo = f.getTitulo();
+        this.diretor = f.getDiretor();
+        this.imdb = f.getImdb();
+        this.ano = f.getAno();
+        this.duracao = f.getDuracao();
+        this.filmeId = f.getId();
+        return "/CriarFilme";
     }
 
     public String getTitulo() {
@@ -81,4 +98,12 @@ public class FilmeBean {
         this.imdb = imdb;
     }
     
+    public int getFilmeId() {
+        return filmeId;
+    }
+
+    public void setFilmeId(int filmeId) {
+        this.filmeId = filmeId;
+    }
+
 }

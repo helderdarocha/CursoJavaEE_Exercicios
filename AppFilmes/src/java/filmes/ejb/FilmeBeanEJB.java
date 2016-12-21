@@ -18,13 +18,21 @@ public class FilmeBeanEJB {
     @PersistenceContext(unitName="AppFilmesPU")
     EntityManager em;
     
-    public void criar(Filme filme) {
-        em.persist(filme);
+    public void criarOuEditar(Filme filme) {
+        em.merge(filme);
     }
     
     public List<Filme> getAll() {
         TypedQuery<Filme> query = 
                 em.createQuery("select x from Filme x", Filme.class);
         return query.getResultList();
+    }
+    
+    public void delete(Filme f) {
+        em.remove(em.merge(f));
+    }
+    
+    public void update(Filme f) {
+        em.merge(f);
     }
 }
