@@ -8,11 +8,18 @@ package filmes.ejb;
 import filmes.entity.Filme;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.jws.WebResult;
+import javax.jws.WebService;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 
 @Stateless
+//@WebService
+@Path("filmes")
 public class FilmeBeanEJB {
     
     @PersistenceContext(unitName="AppFilmesPU")
@@ -22,6 +29,8 @@ public class FilmeBeanEJB {
         em.merge(filme);
     }
     
+    //@WebResult(name="filme") 
+    //@GET @Produces({"application/xml", "application/json"})
     public List<Filme> getAll() {
         TypedQuery<Filme> query = 
                 em.createQuery("select x from Filme x", Filme.class);
