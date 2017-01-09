@@ -19,7 +19,7 @@ import javax.ws.rs.Produces;
 
 @Stateless
 //@WebService
-@Path("filmes")
+//@Path("filmes")
 public class FilmeBeanEJB {
     
     @PersistenceContext(unitName="AppFilmesPU")
@@ -30,7 +30,8 @@ public class FilmeBeanEJB {
     }
     
     //@WebResult(name="filme") 
-    //@GET @Produces({"application/xml", "application/json"})
+    //@GET 
+    //@Produces({"application/xml", "application/json"})
     public List<Filme> getAll() {
         TypedQuery<Filme> query = 
                 em.createQuery("select x from Filme x", Filme.class);
