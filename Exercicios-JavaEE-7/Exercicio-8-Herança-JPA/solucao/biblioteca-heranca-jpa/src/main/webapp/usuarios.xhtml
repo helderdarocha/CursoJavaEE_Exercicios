@@ -8,15 +8,15 @@
         <title>Editoras</title>
         <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
         <style>
-            .editoras {
+            .usuarios {
                 border: solid black 1px;
                 font-family: sans-serif;
                 font-size: 9pt;
             }
-            .editoras th {
+            .usuarios th {
                 background: lightblue;
             }
-            .editoras tr:nth-child(even) {
+            .usuarios tr:nth-child(even) {
                 background: linen;
             }
         </style>
@@ -24,33 +24,33 @@
     <h:body>
         <h:outputLink value="#{request.contextPath}/index.xhtml">Voltar</h:outputLink>
         <hr/>
-        <h1>Editoras</h1>
+        <h1>Usuários</h1>
         <h:form>
-            <h:dataTable value="#{bibliotecaBean.editoras}" var="editora" styleClass="editoras">
+            <h:dataTable value="#{bibliotecaBean.usuarios}" var="usuario" styleClass="usuarios">
                 <h:column>
                     <f:facet name="header">ID</f:facet>
-                    #{editora.id}
+                    #{usuario.id}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Nome</f:facet>
-                    #{editora.nome}
+                    #{usuario.nome}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Títulos</f:facet>
-                    <ui:repeat value="#{editora.titulos}" var="livro" varStatus="status">
-                        #{livro.titulo}
+                    <f:facet name="header">Livros emprestados</f:facet>
+                    <ui:repeat value="#{usuario.emprestimos}" var="exemplar" varStatus="status">
+                        #{exemplar.livro.titulo}
                         <h:outputText value=", "  rendered="#{not status.last}"/>
                     </ui:repeat>
                 </h:column>
                 <h:column>
-                    <h:commandButton action="#{editoraBean.delete(editora)}" value="Remover" />
+                    <h:commandButton action="#{usuarioBean.delete(usuario)}" value="Remover" />
                 </h:column>
                 <h:column>
-                    <h:commandButton action="#{editoraBean.edit(editora)}" value="Editar" />
+                    <h:commandButton action="#{usuarioBean.edit(usuario)}" value="Editar" />
                 </h:column>
             </h:dataTable>
 
-            <h:commandButton action="editora.xhtml" value="Inserir" />
+            <h:commandButton action="usuario.xhtml" value="Inserir" />
         </h:form>
     </h:body>
 </html>
