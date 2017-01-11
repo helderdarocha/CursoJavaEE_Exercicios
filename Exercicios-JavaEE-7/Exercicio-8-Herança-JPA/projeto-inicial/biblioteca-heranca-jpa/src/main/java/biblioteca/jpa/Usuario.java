@@ -6,28 +6,24 @@
 package biblioteca.jpa;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
-@Entity
-@NamedQueries({
-    @NamedQuery(name="getExemplares", query="select o from Exemplar o")
-})
-public abstract class Exemplar implements Serializable {
+// EXERCICIO: Transforme esta classe em uma entidade (@Entity e persistence.xml)
+// EXERCICIO: Implemente relacionamento com Livro e Usuario
+// EXERCICIO: Inclua um named query "getUsuarios" para selecionar todos os exemplares (veja outros exemplos)
+// EXERCICIO: Configure o mapeamento com Exemplares
+public class Usuario implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private boolean disponivel;
-    @ManyToOne
-    private Livro livro;
-    @ManyToOne
-    private Usuario usuario;
+    private String nome;
+    private Collection<Exemplar> emprestimos;
 
     public int getId() {
         return id;
@@ -37,34 +33,26 @@ public abstract class Exemplar implements Serializable {
         this.id = id;
     }
 
-    public Livro getLivro() {
-        return livro;
+    public String getNome() {
+        return nome;
     }
 
-    public void setLivro(Livro livro) {
-        this.livro = livro;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public boolean isDisponivel() {
-        return disponivel;
+    public Collection<Exemplar> getEmprestimos() {
+        return emprestimos;
     }
 
-    public void setDisponivel(boolean disponivel) {
-        this.disponivel = disponivel;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setEmprestimos(Collection<Exemplar> emprestimos) {
+        this.emprestimos = emprestimos;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 59 * hash + this.id;
+        int hash = 3;
+        hash = 67 * hash + this.id;
         return hash;
     }
 
@@ -79,18 +67,16 @@ public abstract class Exemplar implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Exemplar other = (Exemplar) obj;
+        final Usuario other = (Usuario) obj;
         if (this.id != other.id) {
             return false;
         }
         return true;
     }
 
-   
-
     @Override
     public String toString() {
-        return "biblioteca.jpa.Exemplar[ id=" + id + " ]";
+        return "" + id;
     }
     
 }

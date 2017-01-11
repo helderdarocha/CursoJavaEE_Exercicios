@@ -5,18 +5,25 @@
  */
 package biblioteca.jpa;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
-@Entity
-public class ExemplarEletronico extends Exemplar {
+// EXERCICIO: Transforme esta classe em uma entidade (@Entity e persistence.xml)
+// EXERCICIO: Implemente relacionamento com Livro e Usuario
+// EXERCICIO: Inclua um named query "getExemplares" para selecionar todos os exemplares (veja outros exemplos)
+// EXERCICIO: Configure a hierarquia proposta no exercício (herança) em JPA
+// EXERCICIO: Crie as subclasses ExemplarEletronico e ExemplarImpresso
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public abstract class Exemplar implements Serializable {
+
     private int id;
-    private Long tamanho;
+    private boolean disponivel;
 
     public int getId() {
         return id;
@@ -26,18 +33,18 @@ public class ExemplarEletronico extends Exemplar {
         this.id = id;
     }
 
-    public Long getTamanho() {
-        return tamanho;
+    public boolean isDisponivel() {
+        return disponivel;
     }
 
-    public void setTamanho(Long tamanho) {
-        this.tamanho = tamanho;
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 53 * hash + this.id;
+        int hash = 5;
+        hash = 59 * hash + this.id;
         return hash;
     }
 
@@ -52,17 +59,16 @@ public class ExemplarEletronico extends Exemplar {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final ExemplarEletronico other = (ExemplarEletronico) obj;
+        final Exemplar other = (Exemplar) obj;
         if (this.id != other.id) {
             return false;
         }
         return true;
     }
 
-
     @Override
     public String toString() {
-        return "biblioteca.jpa.ExemplarEletronico[ id=" + id + " ]";
+        return "biblioteca.jpa.Exemplar[ id=" + id + " ]";
     }
     
 }
