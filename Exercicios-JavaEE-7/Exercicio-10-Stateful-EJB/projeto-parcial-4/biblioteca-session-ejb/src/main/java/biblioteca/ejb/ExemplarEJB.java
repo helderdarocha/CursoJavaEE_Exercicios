@@ -16,6 +16,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+// EXERCICIO: Implemente o método devolver() nesta classe.
+
 @Stateless
 public class ExemplarEJB implements ExemplarService {
 
@@ -43,12 +45,11 @@ public class ExemplarEJB implements ExemplarService {
         return query.getResultList();
     }
     
+    // EXERCICIO d.2: Implementar query para obter exemplares emprestados para determinado usuario
     @Override
     public Collection<Exemplar> getExemplaresEmprestados(Usuario usuario) {
-        String jpql = "select distinct e from Exemplar e where e.usuario = :usuario";
-        TypedQuery<Exemplar> query = em.createQuery(jpql, Exemplar.class);
-        query.setParameter("usuario", usuario);
-        return query.getResultList();
+        // Implementar
+        return null;
     }
 
     @Override
@@ -90,14 +91,14 @@ public class ExemplarEJB implements ExemplarService {
         return query.getResultList();
     }
 
+    // EXERCICIO d.3: Implementar a devolução de um exemplar emprestado (veja dicas abaixo)
     @Override
     public void devolver(Exemplar e) {
-        e = em.merge(e);
-        e.setDisponivel(true);
-        Usuario u = e.getUsuario();
-        em.merge(u);
-        u.getEmprestimos().remove(e);
-        e.setUsuario(null);
+        // para devolver o exemplar
+        // 1) marque o Exemplar como disponivel
+        // 2) obtenha o usuario vinculado, e remova o Exemplar da sua lista de emprestimos
+        // 3) marque o usuário do exemplar como null
+        // 4) sincronize os objetos com o banco (merge)
     }
 
 }

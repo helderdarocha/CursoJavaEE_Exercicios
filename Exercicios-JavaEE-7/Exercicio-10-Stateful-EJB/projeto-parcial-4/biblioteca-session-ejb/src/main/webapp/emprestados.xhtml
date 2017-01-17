@@ -28,7 +28,7 @@
         <h1>Lista de exemplares emprestados</h1>
         <h2>Usuário: #{usuarioLogado.nome}</h2>
         <h:form>
-            <h:dataTable value="#{emprestimoBean.exemplaresEmprestados}" var="exemplar" styleClass="exemplares">
+            <h:dataTable value="EXERCICIO" var="exemplar" styleClass="exemplares"> <!-- EXERCICIO d.2 - Chame propriedade com lista de exemplares emprestados ao usuario logado -->
                 <h:column>
                     <f:facet name="header">ID</f:facet>
                     #{exemplar.id}</h:column>
@@ -53,13 +53,11 @@
                     #{exemplar.usuario.nome}</h:column>
                 <h:column>
                     <f:facet name="header">Selecionar para devolver</f:facet>
-                    <h:selectBooleanCheckbox value="#{emprestimoBean.idsDevolucao[exemplar.id]}" >
-                        <f:ajax render="btn"/>
-                    </h:selectBooleanCheckbox>
+                    <h:selectBooleanCheckbox value="#{emprestimoBean.idsDevolucao[exemplar.id]}" /> <!-- grava id em Map -->
                 </h:column>
             </h:dataTable>
 
-            <h:commandButton id="dtn" action="#{emprestimoBean.devolver()}" value="Devolver selecionados" />
+            <h:commandButton action="EXERCICIO" value="Devolver selecionados" /> <!-- EXERCICIO d.3 - chame metodo para devolver exemplares -->
         </h:form>
     </h:body>
 </html>

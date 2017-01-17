@@ -53,8 +53,9 @@ public class EmprestimoBean implements Serializable { // Login é necessário pa
         return exemplarService.getLivrosComExemplares(true);
     }
     
+    /** Exemplares emprestados para o usuario logado */
     public Collection<Exemplar> getExemplaresEmprestados() {
-        return exemplarService.getExemplaresEmprestados(getUsuario()); 
+        return exemplarService.getExemplaresEmprestados(getUsuario());  // EXERCICIO d.2: Implemente este metodo em ExemplarEJB
     }
     
     public boolean selecionado(Livro livro) {
@@ -94,13 +95,15 @@ public class EmprestimoBean implements Serializable { // Login é necessário pa
         return null;
     }
     
+    /** Tomar um livro emprestado para usuario logado **/
     public String emprestar() {
-        cesta.emprestar(getUsuario());
+        cesta.emprestar(getUsuario()); // EXERCICIO d.1: implemente este metodo em CestaLivrosEJB
         return "emprestados"; 
     }
     
+    //** Devolver livro de usuario logado **/
     public String devolver() {
-        // Get selected items.
+        // Obtem a lista de objetos a devolver
         devolucoes = new ArrayList<Exemplar>();
         for (Exemplar e : getExemplaresEmprestados()) {
             if (idsDevolucao.get(e.getId())) {
@@ -109,9 +112,9 @@ public class EmprestimoBean implements Serializable { // Login é necessário pa
             }
         }
 
+        // Devolva cada exemplar selecionado
         for(Exemplar e : devolucoes) {
-            System.out.println(">>> devolvendo " + e.getId());
-            exemplarService.devolver(e);
+            exemplarService.devolver(e); // EXERCICIO d.3: implemente este metodo em ExemplarEJB
         }
         return "emprestados"; 
     }
@@ -122,7 +125,7 @@ public class EmprestimoBean implements Serializable { // Login é necessário pa
     }
     
     public void esvaziar() {
-        cesta.esvaziar();
+        cesta.esvaziar(); 
     }
     
 }

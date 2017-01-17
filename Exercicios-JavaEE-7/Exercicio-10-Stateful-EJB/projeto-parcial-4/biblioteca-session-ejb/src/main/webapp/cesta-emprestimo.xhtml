@@ -55,7 +55,8 @@
                 </h:column>
             </h:dataTable>
 
-            <h:commandButton disabled="#{fn:length(emprestimoBean.conteudo) == 0}" action="#{emprestimoBean.emprestar()}" value="Confirmar empréstimo" />
+            <!-- EXERCICIO d.1 -->
+            <h:commandButton disabled="#{fn:length(emprestimoBean.conteudo) == 0}" action="EXERCICIO" value="Confirmar empréstimo" />
             <h:commandButton disabled="#{fn:length(emprestimoBean.conteudo) > 3}" action="emprestimo.xhtml" value="Adicionar livros" />
             <h:commandButton disabled="#{fn:length(emprestimoBean.conteudo) == 0}" action="#{emprestimoBean.cancelar()}" value="Cancelar e esvaziar cesta" />
             

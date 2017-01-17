@@ -14,6 +14,8 @@ import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+// EXERCICIO: Implemente o método emprestar() nesta classe
+
 @Stateful
 public class CestaLivrosEJB implements CestaLivrosService {
     
@@ -59,15 +61,15 @@ public class CestaLivrosEJB implements CestaLivrosService {
         exemplares.clear();
     }
 
+    // EXERCICIO d.1: Implemente o método emprestar (veja dicas nos comentarios)
     @Override
     public void emprestar(Usuario u) {
-        u = em.merge(u);
-        for(Exemplar e : this.getConteudo()) {
-            e.setUsuario(u);
-            u.getEmprestimos().add(e);
-            em.merge(e);
-        }
-        esvaziar();
+        // 1) Obtenha uma cópia persistente sincronizada com o banco do Usuario recebido (caso esteja detached)
+        // 2) Para cada exemplar guardado no mapa
+        //    a) associe o usuario recebido (setUsuario)
+        //    b) adicione o Exemplar a lista de emprestimos do Usuario
+        //    c) sincronize com o banco (merge)
+        //    d) esvazie a cesta
     }
 
 }
