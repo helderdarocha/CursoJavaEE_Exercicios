@@ -14,11 +14,14 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @NamedQueries({
     @NamedQuery(name="getAutores", query="select o from Autor o")
 })
+@XmlRootElement
 public class Autor implements Serializable {
 
     @Id
@@ -37,6 +40,7 @@ public class Autor implements Serializable {
         this.nome = nome;
     }
 
+    @XmlTransient
     public Collection<Livro> getObras() {
         return obras;
     }
